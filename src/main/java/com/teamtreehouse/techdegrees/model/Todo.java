@@ -4,8 +4,7 @@ public class Todo {
     private int id;
     private String name;
 
-    public Todo(int id, String name) {
-        this.id = id;
+    public Todo(String name) {
         this.name = name;
     }
 
@@ -23,5 +22,24 @@ public class Todo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Todo todo = (Todo) o;
+
+        if (id != todo.id) return false;
+        return name != null ? name.equals(todo.name) : todo.name == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 }

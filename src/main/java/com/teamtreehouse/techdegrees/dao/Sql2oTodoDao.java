@@ -34,11 +34,19 @@ public class Sql2oTodoDao implements TodoDao {
 
     @Override
     public List<Todo> findAll() {
-        return null;
+        String sql = "SELECT * FROM todos";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .executeAndFetch(Todo.class);
+        }
     }
 
     @Override
     public Todo findById(int id) {
-        return null;
+        String sql = "SELECT * FROM todos WHERE id = :id";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql).addParameter("id", id)
+                    .executeAndFetchFirst(Todo.class);
+        }
     }
 }
