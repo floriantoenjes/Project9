@@ -13,4 +13,6 @@ public interface TodoDao {
     Todo findById(int id);
 
     Todo update(Todo todo);
+
+    void delete(int id);
 }

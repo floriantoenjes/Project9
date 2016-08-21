@@ -67,4 +67,12 @@ public class Sql2oTodoDaoTest {
         assertEquals("Updated Todo", todo.getName());
     }
 
+    @Test(expected = AssertionError.class)
+    public void deletingDeletesTodo() throws Exception {
+        Todo todo = new Todo("Todo");
+        dao.add(todo);
+
+        findByIdReturnsTodo();
+    }
+
 }

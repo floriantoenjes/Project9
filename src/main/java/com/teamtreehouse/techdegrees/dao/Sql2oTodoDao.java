@@ -60,4 +60,14 @@ public class Sql2oTodoDao implements TodoDao {
             return todo;
         }
     }
+
+    @Override
+    public void delete(int id) {
+        String sql = "DELETE FROM todos WHERE id = :id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
+    }
 }

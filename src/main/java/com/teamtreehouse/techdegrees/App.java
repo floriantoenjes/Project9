@@ -38,7 +38,12 @@ public class App {
             return todo;
         }, gson::toJson);
 
-        delete("/api/v1", (req, res) -> "Hello!");
+        delete("/api/v1/todos/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params("id"));
+            dao.delete(id);
+            res.status(204);
+            return null;
+        });
 
     }
 
