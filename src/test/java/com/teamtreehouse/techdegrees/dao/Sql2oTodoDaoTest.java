@@ -55,4 +55,16 @@ public class Sql2oTodoDaoTest {
         assertEquals(todo, dao.findById(1));
     }
 
+    @Test
+    public void updatingReturnsTodo() throws Exception {
+        Todo todo = new Todo("Todo");
+        todo.setId(dao.add(todo).getId());
+        todo.setName("Updated Todo");
+
+        dao.update(todo);
+        Todo fetchedTodo = dao.findById(1);
+
+        assertEquals("Updated Todo", todo.getName());
+    }
+
 }

@@ -11,4 +11,6 @@ public interface TodoDao {
     List<Todo> findAll();
 
     Todo findById(int id);
+
+    Todo update(Todo todo);
 }

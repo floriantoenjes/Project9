@@ -49,4 +49,15 @@ public class Sql2oTodoDao implements TodoDao {
                     .executeAndFetchFirst(Todo.class);
         }
     }
+
+    @Override
+    public Todo update(Todo todo) {
+        String sql = "UPDATE todos SET name = :name WHERE id = :id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .bind(todo)
+                    .executeUpdate();
+            return todo;
+        }
+    }
 }
